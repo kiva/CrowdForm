@@ -89,7 +89,6 @@ app.get("/", volunteer_controller.index);
 app.post("/login", volunteer_controller.login);
 app.get("/load_application/:org_id", ensure_auth, ensure_training, volunteer_controller.load_application);
 app.get("/logout", volunteer_controller.logout);
-app.get("/get_questions/:org_id", ensure_auth, ensure_training, volunteer_controller.get_questions);
 
 /***** Volunteer requests ******/
 
@@ -121,7 +120,6 @@ app.get("/review/completed/:org_id", volunteer_controller.completed_review_page)
 app.get("/review/completed/load/:org_id", volunteer_controller.load_completed_reviews);
 app.get("/review/organization_data/:org_id", volunteer_controller.load_organization_data);
 app.get("/review/organization_docs/:org_id", volunteer_controller.load_organization_docs);
-app.post("/review/upvote_three_questions", volunteer_controller.upvote_three_questions);
 
 /***** Admin requests ******/
 app.get("/admin/sign-up", ensure_admin, admin_controller.admin_signup_page);

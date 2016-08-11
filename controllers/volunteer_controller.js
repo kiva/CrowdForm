@@ -7,7 +7,6 @@ var sys=require('sys');
 var Application = require('../models/application').Application;
 var Volunteer = require('../models/volunteer').Volunteer;
 var Review = require('../models/review').Review;
-var Question = require('../models/question').Question;
 var Achievement = require('../models/achievement').Achievement;
 var credentials = require("../config.json");
 var sendgrid  = require('sendgrid')('hack4impact', 'dhruvmadethis1');
@@ -398,39 +397,6 @@ exports.load_organization_data = function(req, res) {
     });
 }
 
-/*
- * Loads questions associated with Application/Organization
- * @params organization_id
- * @return list of Question Objects
- */
-
-exports.get_questions = function(req, res) {
-    var org_id = req.params.org_id;
-    Question.find({"organization_id": org_id}, function(err, questions) {
-        return res.json(questions)
-    });
-}
-
-/*
- * Loads questions associated with Application/Organization
- * @params organization_id
- * @return list of Question Objects
- */
-exports.upvote_three_questions = function(req, res) {
-    questions = req.body.box;
-    var count = 0;
-    for (var id in req.body.box) {
-        Question.upvote(id, function(err) {
-            if (err) {
-                return callback(err)
-            };
-            count++;
-            if (count == 3) {
-                return res.redirect('/');
-            }
-        });
-    }
-}
 
 /*
  * Creates a review object (represents review that volunteer has started)
