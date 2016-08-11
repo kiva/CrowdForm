@@ -9,7 +9,6 @@ var Volunteer = require('../models/volunteer').Volunteer;
 var Review = require('../models/review').Review;
 var Achievement = require('../models/achievement').Achievement;
 var credentials = require("../config.json");
-var sendgrid  = require('sendgrid')('hack4impact', 'dhruvmadethis1');
 var request = require('request');
 var ObjectId= mongoose.Types.ObjectId;
 
@@ -212,22 +211,7 @@ exports.create_application = function(req, res) {
 exports.approve_volunteer = function(req, res) {
     Volunteer.findOneAndUpdate({"_id": new ObjectId(req.body.id)},
         {approved: 1}, function(err, data) {
-        if(!err) {
-            var email = new sendgrid.Email({
-                    to: data.email_address,
-                    from: 'kiva@kiva.com',
-                    bcc: 'dhwari@gmail.com',
-                    subject:'Volunteer Approved!',
-                });
-            email.setHtml('<p>Dear'  + data.first_name + '<br /> Thanks for signing up to be a volunteer! '+ 
-                        'Feel free to visit the app and login to get started. The first two things to do are to' + 
-                        'go through the tutorials and fill out the confidentiality form.' + 
-                        '<br /> Thanks, <br /> Folks at Kiva</p>');
-            sendgrid.send(email, function(err, json) {
-                if (err) { return res.send(err); }
-                res.send(200);
-            });
-        } else {
+        if(err) {
             res.send(err);  
         }
         });
