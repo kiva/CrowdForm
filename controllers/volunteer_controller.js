@@ -9,7 +9,6 @@ var Volunteer = require('../models/volunteer').Volunteer;
 var Review = require('../models/review').Review;
 var Achievement = require('../models/achievement').Achievement;
 var credentials = require("../config.json");
-var sendgrid  = require('sendgrid')('hack4impact', 'dhruvmadethis1');
 var request = require('request');
 var ObjectId= mongoose.Types.ObjectId;
 
