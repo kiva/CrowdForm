@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       
+
 
         <link href="/kiva_style.css" rel="stylesheet" type="text/css">
         <meta name="description" content="">
@@ -45,6 +45,70 @@
                 <input type="password" name="password" size="20" class="form-control" placeholder="Password" required><br>
                 <input type="url" name="linked_in" size="20" class="form-control" placeholder="Linkedin Profile" required><br>
 
+
+                  <script type="text/javascript">
+                    function showfield(name) {
+                      if (name=='Other_language') {
+                        document.getElementById('language').style.display='block';
+                      } else if (name=='Other_region') {
+                        document.getElementById('region').style.display='block';
+                      } else if (name=='Other_sector') {
+                        document.getElementById('sector').style.display='block';
+                      }
+                    }
+                  </script>
+                      <select type="language" name="other_langauge" class="form-control" id="language_drop_down" onchange="showfield(getElementById('language_drop_down').options[this.selectedIndex].value)" required>
+                        <option value="" disabled selected>In what languages would you feel comfortable reading the due diligence documents?</option>
+                        <option value="English">English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                        <option value="Portuguese">Portuguese</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Mandarin">Mandarin</option>
+                        <option value="French">French</option>
+                        <option value="Other_language">Other</option>
+                      </select><input type="text" style="display:none; margin-top: 20px" id="language" class="form-control"></input>
+                    <br>
+
+                    <select type="region" name="other_region" class="form-control" id="region_drop_down" onchange="showfield(getElementById('region_drop_down').options[this.selectedIndex].value)" required>
+                      <option value="" disabled selected>In what regions are you most interested?</option>
+                      <option value="Global">Global</option>
+                      <option value="North America">North America</option>
+                      <option value="South America">South America</option>
+                      <option value="Latin America">Latin America</option>
+                      <option value="Caribbean">Caribbean</option>
+                      <option value="Africa">Africa</option>
+                      <option value="Middle East">Middle East</option>
+                      <option value="Central Asia">Central Asia</option>
+                      <option value="South Asia">South Asia</option>
+                      <option value="East Asia">East Asia</option>
+                      <option value="Other_region">Other</option>
+                    </select><input type="text" style="display:none; margin-top: 20px" id="region" class="form-control"></input>
+                  <br>
+
+                  <select type="sector" name="other_sector" class="form-control" id="sector_drop_down" onchange="showfield(getElementById('sector_drop_down').options[this.selectedIndex].value)" required>
+                    <option value="" disabled selected>In what sectors are you most interested?</option>
+                    <option value="Agricultural Products & Services">Agricultural Products & Services</option>
+                    <option value="Aquaculture & Fisheries">Aquaculture & Fisheries</option>
+                    <option value="Clean Energy & Power">Clean Energy & Power</option>
+                    <option value="Community Development">Community Development</option>
+                    <option value="Distribution & Retail">Distribution & Retail</option>
+                    <option value="Education">Education</option>
+                    <option value="Food & Beverages">Food & Beverages</option>
+                    <option value="Livestock & Poultry">Livestock & Poultry</option>
+                    <option value="Financial Services">Financial Services</option>
+                    <option value="Health">Health</option>
+                    <option value="Services & Supplies">Services & Supplies</option>
+                    <option value="Hotels & Tourism">Hotels & Tourism</option>
+                    <option value="ICT">ICT</option>
+                    <option value="Health">Health</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Natural Resources & Conservation">Natural Resources & Conservation</option>
+                    <option value="Water & Sanitation">Water & Sanitation</option>
+                    <option value="Other_sector">Other</option>
+                  </select><input type="text" style="display:none; margin-top: 20px" id="sector" class="form-control"></input>
+                  <br>
+
                 <div class="checkbox" style="margin-left:3px">
                     <label>
                         <input type="checkbox" id="checkbox" onclick="checkboxCheck();"><b>I have already read and signed this <a href='https://na2.docusign.net/member/PowerFormSigning.aspx?PowerFormId=dfc19b21-39ee-40ac-98c0-ecda07cbc268' target="_blank">volunteer agreement.</a></b>
@@ -53,7 +117,7 @@
                 <input type="submit" id="submit-button" class="btn btn-primary" disabled>
             </form>
         </div><br><br>
-    </div>   
+    </div>
     <% include footer %>
     </div>
     </body>
@@ -64,9 +128,9 @@
             } else {
                 $('#submit-button').attr('disabled', 'disabled');
             }
-        } 
+        }
         $(document).ready(function() {
-            $('.banner-btn').hide();  
+            $('.banner-btn').hide();
             $('#signup-submit').submit(function(e) {
                 e.preventDefault();
                 $.ajax({
@@ -75,18 +139,18 @@
                     data: {username: $('[name=username]').val(), email: $('[name=email_address]').val()},
                     success: function(data) {
                         switch (data) {
-                            case "neither": 
+                            case "neither":
                                 $('form').unbind('submit').submit();
                                 break;
                             case "email":
                                 $('#email-alert').show();
                                 $('#username-alert').hide();
                                 break;
-                            case "username": 
+                            case "username":
                                 $('#email-alert').hide();
                                 $('#username-alert').show();
                                 break;
-                            case "both": 
+                            case "both":
                                 $('#email-alert').show();
                                 $('#username-alert').show();
                                 break;
