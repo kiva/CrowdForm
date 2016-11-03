@@ -113,6 +113,13 @@ exports.logout = function(req, res) {
 };
 
 /**
+ * Send a forgot password email
+ */
+exports.forgot_password = function(req,res) {
+     res.render("forgot_password.ejs", {message: null, name: null});
+}
+
+/**
  * Loads single application information
  * @param organization id
  * @return Application object
