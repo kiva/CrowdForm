@@ -73,12 +73,16 @@ will hold any libraries you install.
 8. Run a local Mongo instance.
 
 		mongod
+		
+9. Set up a db.conf file to point at a database in mongo with the json-encoded path, you can use the default 'test' db to start:
+
+		echo '{"path":"mongodb:\/\/localhost\/test"}' > db.conf
 
 9. Run your local node server
 
 		node app.js
 
-9. Head on over to http://0.0.0.0:5000/!
+9. Head on over to http://0.0.0.0:8081/!
 
 ## License
 [MIT License](LICENSE.md)
