@@ -91,6 +91,7 @@ app.get("/load_application/:org_id", ensure_auth, ensure_training, volunteer_con
 app.get("/logout", volunteer_controller.logout);
 app.get("/get_questions/:org_id", ensure_auth, ensure_training, volunteer_controller.get_questions);
 app.get("/forgot_password", volunteer_controller.forgot_password);
+app.get("/forgot_password_email", volunteer_controller.forgot_password_email);
 
 /***** Volunteer requests ******/
 

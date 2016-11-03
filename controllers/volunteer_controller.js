@@ -113,10 +113,28 @@ exports.logout = function(req, res) {
 };
 
 /**
- * Send a forgot password email
+ * Page to enter email to send lost password
  */
 exports.forgot_password = function(req,res) {
      res.render("forgot_password.ejs", {message: null, name: null});
+}
+
+/**
+ * Trigger sending forgot password email
+ */
+exports.forgot_password_email = function(req,res) {
+    var email = req.body.email_address;
+
+    Volunteer.findOne( {$or: [{'email_address': email}]},
+        function(err, volunteer) {
+            if(volunteer != null) {
+                // send the email
+                res.redirect('/login');
+            }
+			else {
+				res.redirect('/forgot_password');
+			}
+        });
 }
 
 /**
