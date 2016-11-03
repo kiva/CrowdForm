@@ -4,6 +4,7 @@ var fs = require('fs');
 
 var Volunteer = require('./models/volunteer.js').Volunteer;
 var mongoose = require("mongoose");
+var nodemailer = require('nodemailer');
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 var db = JSON.parse(fs.readFileSync('db.conf', 'utf8'));
